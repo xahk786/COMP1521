@@ -5,38 +5,28 @@ int main(void) {
 
 	char ch;
 
-	while ( ch = getchar() != EOF )
+	while ( ch = getchar() )
 	{
-
-		if (ch > 'A' && ch < 'Z')
+		
+		if (ch == EOF)
 		{
-			char answ = ch + 32;
+			break;
+		}
+
+		if (ch <= 'Z' && ch >= 'A')
+		{
+			char answ;
+			answ = ch + 32;
 
 			putchar(answ);
-		} else 
+		} else
 		{
 			putchar(ch);
 		}
 
-	
-	}
-
-	char answ = 'a' - 32;
-
-	printf("%c,", answ);
 		
-	return 0;
-}
-
-int convert(char letter)
-{
-	if (letter > 'A' && letter < 'Z') 
-	{
-		char answ = letter + 32;
-
-		return answ
+	
 	}
 
-	
 
 }
