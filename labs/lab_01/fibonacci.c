@@ -4,14 +4,30 @@
 #define SERIES_MAX 46
 
 
-void fib(int x, int arr[]){
+void fib(int target, int num, int check[]){
 
-    int num_next;
-    num_next = x +  
+    if (check[num-1] != -1 && check[num - 2] != -1)
+    {
+        int f_curr;
+        f_curr = check[num-1] + check[num -2];
+        check[num] = f_curr;
+        
+        if (num == target) 
+        {
+            return;    
+        }
+        
+    } else {
+        num = num - 1;
+        return fib(target, num, check);
+    }
+    
+    num = num + 1;
+    
+    return fib(target, num, check);
 
     
 }
-
 
 int main(void) {
     
@@ -32,14 +48,15 @@ int main(void) {
 
     while (scanf("%d", &num) != EOF)
     {
-        if (num == 0 || num == 1)
+        if (check[num] != -1)
         {
-            printf("%d\n", num);
+            printf("%d\n", check[num]);
         } else {
-            fib(num, check);
+            fib(num, num, check);
+            printf("%d\n", check[num]);
         }
-    }
+    } 
    
-
+    //fib(num, check);
     return EXIT_SUCCESS;
 }
