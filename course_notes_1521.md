@@ -70,8 +70,12 @@ p = &person_1; //p will hold address of person_1;
 The syntax to access a member of the struct is as follows:\
 `(*p).age` = `person_1.age` = `p->age`
 
-
 # Part 1 : Bits, integers, floating points
+
+# Part 2 : MIPS Assembly 
+
+# Part 3 : System Programming
+
 
 
 
