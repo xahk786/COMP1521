@@ -29,7 +29,7 @@ For this subset, you will need to modify shuck.c :
 ## **Subset 3: Filename Expansion (Globbing)**
 For this subset, you will need to modify shuck.c to support filename expansion, sometimes referred to as globbing.
 
-If any of the characters '*', '?', '[', or '~' appear in a word, that word should be taken as a pattern, and should be replaced by all of the words matching that pattern using the glob library function; or, if there are no matches, use the pattern-word unchanged. This may result in the word list becoming longer than it initially was.
+- If any of the characters '*', '?', '[', or '~' appear in a word, that word should be taken as a pattern, and should be replaced by all of the words matching that pattern using the glob library function; or, if there are no matches, use the pattern-word unchanged. This may result in the word list becoming longer than it initially was.
 
 ## **Subset 4: Input/Output Redirection**
 
