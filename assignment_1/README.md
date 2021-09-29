@@ -1,6 +1,6 @@
 # Assignment 1: snake, Snake!
 
-- **Assignment mark:** 97/100
+- **Final Assignment mark:** 97/100
     - **Automated Testing:** 80/80
     - **Style** : 17/20
 
