@@ -70,6 +70,15 @@ p = &person_1; //p will hold address of person_1;
 The syntax to access a member of the struct is as follows:\
 `(*p).age` = `person_1.age` = `p->age`
 
+## Recursion in C
+
+- Recursion refers to a function that calls itself 
+- Think of recursion like a while(True) loop
+    - The condition to break the loop is known as the base case 
+- Can get confusing when the return value of the function is not void()
+    - Think of every function call as the function called on a different branch. 
+    - The values that may be incrementing/changing are preserved on static memory
+    - ????
 
 # Part 1 : Bits, integers, floating points
 
@@ -131,7 +140,7 @@ The syntax to access a member of the struct is as follows:\
 # Part 2 : MIPS Assembly 
 
 ## Syscalls:
--   Print string
+-   **printf("%s")**
     ```MIPS
     #Load string address into $a0
     #Load 4 into $v0
@@ -140,7 +149,7 @@ The syntax to access a member of the struct is as follows:\
     syscall
     ```
 
--   Print integer
+-   **printf("%d")**
     ```MIPS
     #Load integer value in $a0
     #load 1 into $v0
@@ -148,13 +157,13 @@ The syntax to access a member of the struct is as follows:\
     li   $v0, 1 
     syscall
     ```
--   Scanf integer
+-   **scanf("%d")**
     ```MIPS
     #load 5 into $v0. Fetch scanned integer from $v0
     li   $v0, 5        
     syscall
     ```
--   fgets(str,128, stdin)
+-   **fgets(str,128, stdin)**
     ```MIPS
     #load string address into $a0
     #load length into $a1
@@ -182,7 +191,7 @@ The syntax to access a member of the struct is as follows:\
           
           li  $t0, 8 #index = $t0 / 4 = 2     
           sw  $t1, array($t0) # array[2] = $t1
-          lb  $t1, array($t0) # $t1 = array[2]
+          lw  $t1, array($t0) # $t1 = array[2]
           ```
         - Address is indexed by increments of 4 
 - **Byte**: \
@@ -194,7 +203,7 @@ The syntax to access a member of the struct is as follows:\
     char_array: #char array[5] = {'a' ,'b' ...}
         .byte 'a' 'b' 'c' 'd' 'e' 
     ```
-    - Address is indexed bt increments of 1
+    - Address is indexed by increments of 1
 
 - **Space**: When unsure of the contents of a variable, use space to allocate how many bytes the variable will hold \
 *Example:*
@@ -209,7 +218,30 @@ The syntax to access a member of the struct is as follows:\
     ```
     - Access space variables using sb (save byte) and lb(load byte). Can also use sw and lw if dealing with word
     - Address is generally indexed by increments of 1, but if storing words in space, then indexed by 4
-        
+
+## Functions in MIPS
+- Input parameter is stored in $a0 (if any)
+- Output return value stored in $v0 (if any)
+- Prologue: Save $ra, and any other variable registers on stack\
+Epilogue: Load $ra, and any other variables back to original variables from stack\
+*Example:*
+- ```MIPS
+	#Prologue
+    addiu $sp, $sp, -16 #allocating 16 bytes to store 4 variables on stack
+    sw $ra, ($sp) #byte block: 0 - 4
+	sw $s0, 4($sp) #byte block: 4 - 8
+	sw $s1, 8($sp) #byte block: 8 - 12
+	sw $s2, 12($sp)#byte block: 12 - 16
+  ```
+- ```MIPS
+	#Epilogue
+	# tear down stack frame
+	lw $ra, ($sp)
+	lw $s0, 4($sp) 
+	lw $s1, 8($sp) 
+	lw $s2, 12($sp)
+    addiu $sp, $sp, 16 #move stack pointer back up 16 bytes
+  ```
 
 # Part 3 : System Programming
 
