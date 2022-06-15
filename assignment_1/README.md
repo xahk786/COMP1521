@@ -1,4 +1,5 @@
-# Assignment 1: snake, Snake!
+# Assignment 1: snake, Snake!  
+**Pw:** cseass1
 
 - **Final Assignment mark:** 97/100
     - **Automated Testing:** 80/80
